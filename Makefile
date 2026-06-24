@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -g
 
-TARGET = allocator
+TARGET = bin/allocator.o
 
 SRC = src/allocator.c test/test_allocator.c
 
