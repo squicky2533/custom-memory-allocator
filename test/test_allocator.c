@@ -3,7 +3,15 @@
 
 int main(void)
 {
-    printf("Allocator project started!\n");
-    find_free_block(100);
-    return 0;
+    block_t *block= request_space(100);
+    if(block){
+        printf("block created");
+        printf("size: %zu\n", block->size);
+
+
+
+    }
+    return 0 ;
+
+
 }
