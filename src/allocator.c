@@ -40,17 +40,35 @@ block_t *request_space(size_t size){
 
 void *my_malloc(size_t size){
     block_t *block ;
+    block_t *new_block ;
     if(size == 0 ){
         return NULL ; 
     }
+
     block = find_free_block(size);
+
     if(block == NULL){
         block = request_space(size);
+
         if(block == NULL){
             return NULL ; 
         }
         if(head == NULL){
             head = block ; 
+        }
+        else
+        {
+            if(block->size >= size + sizeof(block_t ) + 1)
+            {
+                new_block = (block_t *)((char *)(block + 1) + size);
+
+                new_block->size = block->size - size - sizeof(block_t);
+                new_block->free = 1;
+                new_block->next = block->next;
+
+                block->size = size;
+                block->next = new_block;
+            }
         }
         }
     block->free = 0 ;
@@ -66,3 +84,23 @@ void my_free(void *ptr){
     block = (block_t *)ptr - 1 ;
     block->free = 1 ; 
 }
+
+void coalese()
+{
+    block_t *current = head;
+    while(current && current->next)
+    {
+        if(current->free && current->next->free)
+        {
+            current->size += sizeof(block_t) + current->next->size;
+            current->next = current->next->next;
+        }
+        else
+        {
+            current = current->next;
+        }
+    }    
+}
+
+
+

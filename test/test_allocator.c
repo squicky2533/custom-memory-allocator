@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include "../src/allocator.h"
-
 int main(void)
 {
-    char *ptr = my_malloc(100);
+    printf("Test 2: reuse block\n");
 
-    my_free(ptr);
+    char *a = my_malloc(100);
+    my_free(a);
 
-    block_t *block = (block_t *)ptr - 1;
+    char *b = my_malloc(50);
 
-    printf("free = %d\n", block->free);
+    printf("a = %p\n", a);
+    printf("b = %p\n", b);
 
     return 0;
 }
