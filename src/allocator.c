@@ -83,6 +83,7 @@ void my_free(void *ptr){
     }
     block = (block_t *)ptr - 1 ;
     block->free = 1 ; 
+    coalese() ; 
 }
 
 void coalese()
@@ -102,5 +103,15 @@ void coalese()
     }    
 }
 
+void print_heap(void)
+{
+    block_t *current = head;
+    printf("Heap blocks:\n");
+    while(current != NULL)
+    {
+        printf("Block at %p: size=%zu, free=%d\n", (void *)current, current->size, current->free);
+        current = current->next;
+    }
+}
 
 
