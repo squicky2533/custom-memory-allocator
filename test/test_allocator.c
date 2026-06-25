@@ -3,15 +3,17 @@
 
 int main(void)
 {
-    block_t *block= request_space(100);
-    if(block){
-        printf("block created");
-        printf("size: %zu\n", block->size);
+    char *ptr = my_malloc(100);
 
+    if (ptr)
+    {
+        ptr[0] = 'A';
+        ptr[1] = 'B';
+        ptr[2] = 'C';
+        ptr[3] = '\0';
 
-
+        printf("%s\n", ptr);
     }
-    return 0 ;
 
-
+    return 0;
 }

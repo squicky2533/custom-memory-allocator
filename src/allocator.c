@@ -22,7 +22,7 @@ block_t *find_free_block(size_t size){
 block_t *request_space(size_t size){
     block_t *block ;
     
-    block=sbrk(sizeof(block_t));
+    block=sbrk(sizeof(block_t) + size);
     
     if(block==(void *)-1){
         return NULL; 
@@ -35,5 +35,25 @@ block_t *request_space(size_t size){
 
 
 
+
+}
+
+void *my_malloc(size_t size){
+    block_t *block ;
+    if(size == 0 ){
+        return NULL ; 
+    }
+    block = find_free_block(size);
+    if(block == NULL){
+        block = request_space(size);
+        if(block == NULL){
+            return NULL ; 
+        }
+        if(head == NULL){
+            head = block ; 
+        }
+        }
+    block->free = 0 ;
+    return(void *)(block + 1) ;
 
 }
