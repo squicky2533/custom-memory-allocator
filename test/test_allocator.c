@@ -5,15 +5,11 @@ int main(void)
 {
     char *ptr = my_malloc(100);
 
-    if (ptr)
-    {
-        ptr[0] = 'A';
-        ptr[1] = 'B';
-        ptr[2] = 'C';
-        ptr[3] = '\0';
+    my_free(ptr);
 
-        printf("%s\n", ptr);
-    }
+    block_t *block = (block_t *)ptr - 1;
+
+    printf("free = %d\n", block->free);
 
     return 0;
 }

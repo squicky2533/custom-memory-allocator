@@ -57,3 +57,12 @@ void *my_malloc(size_t size){
     return(void *)(block + 1) ;
 
 }
+
+void my_free(void *ptr){
+    block_t *block ; 
+    if(ptr == NULL){
+        return ; 
+    }
+    block = (block_t *)ptr - 1 ;
+    block->free = 1 ; 
+}
