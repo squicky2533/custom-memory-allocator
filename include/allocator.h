@@ -19,5 +19,6 @@ void check_leaks(void);
 size_t align8(size_t size);
 void coalesce(void);
 void *my_realloc(void *ptr ,size_t size);
+void *calloc(size_t nmemb, size_t size);
 
 #endif

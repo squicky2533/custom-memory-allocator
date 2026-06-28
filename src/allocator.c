@@ -195,3 +195,26 @@ void *my_realloc(void *ptr, size_t size)
 
     return new_ptr;
 }
+
+void my_calloc(size_t nmemb, size_t size)
+{
+    size_t total_size;
+    void *ptr ; 
+    
+    if(nmemb == 0 || size == 0 )
+    {
+        return NULL;
+
+    }
+    total_size = nmemb * size ; 
+    ptr = my_malloc(total_size);
+
+    if(ptr == NULL)
+    {
+        return NULL;
+    }
+    
+    memset(ptr,0,total_size);
+
+    return  ptr ; 
+}
