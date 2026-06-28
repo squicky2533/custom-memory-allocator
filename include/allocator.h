@@ -15,5 +15,9 @@ block_t *request_space(size_t size);
 void *my_malloc(size_t size);
 void my_free(void *ptr);
 void print_heap(void);
+void check_leaks(void);
+size_t align8(size_t size);
+void coalesce(void);
+void *my_realloc(void *ptr ,size_t size);
 
 #endif

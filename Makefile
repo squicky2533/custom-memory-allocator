@@ -1,16 +1,19 @@
+
 CC = gcc
+CFLAGS = -Wall -Wextra -g -Iinclude
 
-CFLAGS = -Wall -Wextra -g
+SRC = src/allocator.c
+TEST = test/test_allocator.c
 
-TARGET = allocator
+OUT = allocator
 
-SRC = src/allocator.c test/test_allocator.c
+all: $(OUT)
 
-all:
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+$(OUT):
+	$(CC) $(CFLAGS) $(SRC) $(TEST) -o $(OUT)
 
 run: all
-	./$(TARGET)
+	./$(OUT)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(OUT)
