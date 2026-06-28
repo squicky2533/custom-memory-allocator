@@ -176,7 +176,7 @@ void *my_realloc(void *ptr, size_t size)
         return NULL ; 
     }
 
-    size=align8(size)
+    size=align8(size);
     block_t *block = (block_t *)ptr - 1;
 
     if(block->size >= size)
