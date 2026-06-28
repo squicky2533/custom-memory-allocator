@@ -9,13 +9,19 @@ void test_reuse(void);
 
 int main(void)
 {
-    test_malloc();
-   
+  
+    char *a = my_malloc(10);
+    char *b = my_malloc(20);
 
+    my_free(a);
+    my_free(b);
 
-    return 0 ; 
+    print_heap();
+    check_leaks();
 
+    return 0;
 }
+
 
 
 

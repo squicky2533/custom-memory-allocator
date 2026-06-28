@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h> 
 #include <string.h>
+#include <stddef.h>
 #include "allocator.h"
 
 
@@ -190,13 +191,13 @@ void *my_realloc(void *ptr, size_t size)
     {
         return NULL;
     }
-    memcpy(new_ptr,ptr,block->size);
+    memcpy(new_ptr, ptr, size < block->size ? size : block->size);
     my_free(ptr);
 
     return new_ptr;
 }
 
-void my_calloc(size_t nmemb, size_t size)
+void *my_calloc(size_t nmemb, size_t size)
 {
     size_t total_size;
     void *ptr ; 
@@ -218,3 +219,4 @@ void my_calloc(size_t nmemb, size_t size)
 
     return  ptr ; 
 }
+
